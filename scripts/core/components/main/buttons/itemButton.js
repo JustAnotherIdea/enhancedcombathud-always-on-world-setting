@@ -130,9 +130,18 @@ export class ItemButton extends ArgonComponent{
     if (this.useTargetPicker && this.targets > 0) {
       isTargetPicker = true;
       const picker = new TargetPicker({token: this.token, targets: this.targets, ranges: this.ranges});
+      //trying to toggle the hud when targetting on mobile
+      if (window.innerWidth < 600) {
+        ui.ARGON.toggle();
+      }
       const result = await picker.promise;
       isTargetPicker = false;
       if(!result) return;
+    } else {
+      //trying to toggle the hud when targetting on mobile
+      if (window.innerWidth < 600) {
+        ui.ARGON.toggle();
+      }
     }
     this._onLeftClick(event);
   }
